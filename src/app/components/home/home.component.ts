@@ -40,8 +40,8 @@ export class HomeComponent {
   getEmployees() {
     this.employeeService
       .getAll({
-        name: '',
-        position: '',
+        name: this.nameFilter,
+        position: this.positionFilter,
       })
       .subscribe({
         next: (data) => {
@@ -71,5 +71,32 @@ export class HomeComponent {
         console.error('Cannot Delete employee.');
       },
     });
+  }
+
+  exportToCSV(): void {
+    if (this.employeeList.length) {
+      const csvData = this.convertToCSV(this.employeeList);
+      this.downloadCSV(csvData, 'employees.csv');
+    }
+  }
+
+  private convertToCSV(data: Employee[]): string {
+    const header = 'ID,Name,Position,Description,Active';
+    const rows = data.map(
+      (employee) =>
+        `${employee.id},${employee.name},${employee.position},${employee.description},${employee.active}`
+    );
+    return [header, ...rows].join('\n');
+  }
+
+  private downloadCSV(csvData: string, filename: string): void {
+    const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 }
