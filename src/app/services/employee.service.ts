@@ -56,12 +56,8 @@ export class EmployeeService {
       `Bearer ${token}`
     );
 
-    let params = new HttpParams();
-    params = params.set('id', id);
-
-    return this.http.put<Employee>(this.employeeApiUrl, info, {
+    return this.http.put<Employee>(`${this.employeeApiUrl}/${id}`, info, {
       headers: headers,
-      params: params,
     });
   }
 
