@@ -1,0 +1,44 @@
+<div class="filter-section">
+  <input type="text" [(ngModel)]="nameFilter" placeholder="Filter by name" />
+  <input
+    type="text"
+    [(ngModel)]="positionFilter"
+    placeholder="Filter by position"
+  />
+  <button (click)="getEmployees()">Filter</button>
+</div>
+
+<div class="card-container">
+  <div
+    class="card"
+    *ngFor="
+      let employee of employeeList
+        | paginate : { itemsPerPage: 10, currentPage: p }
+    "
+  >
+    <div class="card-header">
+      <h3>{{ employee.name }}</h3>
+      <p>{{ employee.position }}</p>
+    </div>
+    <div class="card-body">
+      <p>{{ employee.description }}</p>
+    </div>
+    <div class="state">
+      <p *ngIf="employee.active">Active</p>
+      <p *ngIf="!employee.active">Inactive</p>
+    </div>
+    <div class="card-footer">
+      <i
+        class="icon fa-solid fa-pen-to-square"
+        (click)="editEmployee(employee.id)"
+      ></i>
+      <i
+        class="icon fa-solid fa-trash"
+        (click)="deleteEmployee(employee.id)"
+      ></i>
+    </div>
+  </div>
+</div>
+<div class="paginator">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

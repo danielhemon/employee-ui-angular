@@ -18,4 +18,4 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
   ],
 })
-export class TranslationModule {}
+export class AppTranslateModule {}

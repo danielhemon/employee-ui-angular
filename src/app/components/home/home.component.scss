@@ -1,0 +1,74 @@
+.filter-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-footer {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .icon {
+    scale: 1.2;
+    margin: 0px 20px;
+  }
+}
+
+.state {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paginator {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

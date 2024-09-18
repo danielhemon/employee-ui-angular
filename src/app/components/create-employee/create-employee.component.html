@@ -1,0 +1,70 @@
+<div class="employee-card-container">
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    <div class="employee-card">
+      <h2>Registrar Empleado</h2>
+
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          placeholder="Nombre del empleado"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isInvalidAndTouched('name') }"
+        />
+        <div class="error-message" *ngIf="isInvalidAndTouched('name')">
+          <small *ngIf="employeeForm.get('name')?.errors?.['required']"
+            >El nombre es requerido.</small
+          >
+          <small *ngIf="employeeForm.get('name')?.errors?.['minlength']"
+            >Debe tener al menos 3 caracteres.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="position">Posición</label>
+        <input
+          type="text"
+          id="position"
+          formControlName="position"
+          placeholder="Posición del empleado"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isInvalidAndTouched('position') }"
+        />
+        <div class="error-message" *ngIf="isInvalidAndTouched('position')">
+          <small *ngIf="employeeForm.get('position')?.errors?.['required']"
+            >La posición es requerida.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Descripción</label>
+        <textarea
+          id="description"
+          formControlName="description"
+          placeholder="Descripción del empleado"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isInvalidAndTouched('description') }"
+        ></textarea>
+        <div class="error-message" *ngIf="isInvalidAndTouched('description')">
+          <small *ngIf="employeeForm.get('description')?.errors?.['required']"
+            >La descripción es requerida.</small
+          >
+          <small *ngIf="employeeForm.get('description')?.errors?.['minlength']"
+            >Debe tener al menos 10 caracteres.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="active">Activo</label>
+        <input type="checkbox" id="active" formControlName="active" />
+      </div>
+
+      <button type="submit" class="btn-submit">Enviar</button>
+    </div>
+  </form>
+</div>
